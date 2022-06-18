@@ -23,7 +23,7 @@
  */
 package jhoughton.math.rsi.average;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +34,14 @@ import org.junit.jupiter.api.Test;
  */
 class TestCutlerAverage {
 
+    private static final double[] samples = new double[] {
+            2, 4, 6, 8, 12, 14, 16, 18, 20
+    };
+
+    private static final double[] expected = new double[] {
+            2, 3, 5, 7, 10, 13, 15, 17, 19
+    };
+
     private CutlerAverage cutlerAverage;
 
     /**
@@ -41,12 +49,17 @@ class TestCutlerAverage {
      */
     @BeforeEach
     void setUp() throws Exception {
-        cutlerAverage = new CutlerAverage();
+        cutlerAverage = new CutlerAverage(2);
     }
 
     @Test
     void test() {
-        fail("Not yet implemented");
+        for (int i = 0; i < samples.length; i++) {
+            double sample = samples[i];
+            double expect = expected[i];
+            double actual = cutlerAverage.average(sample, 0);
+            assertEquals(expect, actual);
+        }
     }
 
 }

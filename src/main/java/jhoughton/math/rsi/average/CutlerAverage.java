@@ -36,15 +36,30 @@ import jhoughton.math.rsi.AverageCalculator;
  *
  */
 public class CutlerAverage implements AverageCalculator {
+    private final double[] ring;
+    private double sum = 0L;
+    private int fill;
+    private int position;
 
-    public CutlerAverage() {
-        // TODO Auto-generated constructor stub
+    public CutlerAverage(int size) {
+        ring = new double[size];
     }
 
     @Override
-    public double average(double changeUp, double lastSmmaUp) {
-        // TODO Auto-generated method stub
-        return 0;
+    public double average(double point, double lastChange) {
+        if (fill == ring.length) {
+            sum -= ring[position];
+        } else {
+            fill++;
+        }
+
+        sum += point;
+        ring[position++] = point;
+
+        if (position == ring.length) {
+            position = 0;
+        }
+        return sum / fill;
     }
 
 }

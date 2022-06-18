@@ -29,7 +29,7 @@ package jhoughton.math.rsi;
  */
 public interface AverageCalculator {
 
-    double average(double changeUp, double lastSmmaUp);
+    double average(double change, double lastChange);
 
     public static enum Averager {
         Wilder, Cutler;
